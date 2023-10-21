@@ -1,0 +1,339 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    /* outline: 1px solid red;     */
+}
+
+.header {
+    background-image: url( ../img/los-santos-gta-v__xtrafondos.com.jpg);
+    background-position: center center ; 
+    background-repeat: no-repeat ;
+    background-size: cover ;
+    display: flex ;
+    align-items: center ;
+    min-height: 25vh;
+    justify-content: center;
+    
+ }
+
+
+ h2 {
+    display:flexbox;
+    color: #FFFFFF;
+    font-size: 35px;
+    margin-bottom: 45px;
+} 
+
+
+ #titulo_catalogo {
+    display:inline;
+    text-align: center; /* Centra el texto horizontalmente */
+  }
+
+ 
+/* Estilo para el cuerpo de la página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #807569;
+}
+
+
+.body_detalle {
+  font-family: Arial, sans-serif;
+  background-color: #e0d9d9;
+  min-height: 70vh;
+}
+
+
+
+/* Estilo para el contenedor del catálogo */
+.catalogo {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 20px;
+}
+
+/* Estilo para cada tarjeta de juego */
+.juego {
+    background-color: #fff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 10px;
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+}
+
+/* Estilo para la imagen del juego */
+.juego img {
+    max-width: 100%;
+    /* height: auto; */
+    height: 10rem; 
+    object-fit: cover;    
+}
+
+/* Estilo para la descripción del juego */
+.descripcion {
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+/* Estilo para el precio del juego */
+.precio {
+    font-size: 18px;
+    font-weight: bold;
+    color: #f00;
+    margin-top: 10px;
+}
+
+/* Estilo para el botón de "Más Detalles" */
+.boton {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Estilo para el botón cuando se pasa el cursor por encima */
+.boton:hover {
+    background-color: #0056b3;
+}
+
+#mensajeNoResultados {
+    background-color: #ffcccc;
+    border: 1px solid #ff0000;
+    padding: 10px;
+    margin-top: 5px;
+    text-align: center;
+  }
+  
+
+  .checkbox-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    margin-left: 3rem;
+    width: 10rem;
+  }
+
+  .custom-checkbox {
+    margin-right: 10px;
+  }
+
+  
+  @media screen and (max-width: 768px) {
+    .checkbox-container {
+      flex-direction: column;
+    }
+  }
+
+  .checkbox-label {
+    color: rgb(14, 3, 3);
+  }
+
+
+  /* Estilos generales del footer */
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 15vh;
+}
+
+/* Estilos del lado izquierdo del footer */
+.footer-left {
+  flex: 3; 
+  
+}
+
+.footer-left a {
+  text-decoration: none;
+}
+
+.footer-left img {
+  width: 150px; 
+}
+
+/* Estilos del lado derecho del footer */
+.footer-right {
+  flex: 1; 
+  
+}
+
+.social-icons {
+  margin-bottom: 20px;
+}
+
+.social-icons a {
+  color: #fff;
+  text-decoration: none;
+  margin-right: 10px; 
+  font-size: 20px; 
+}
+
+.contact-info {
+  font-size: 14px;
+}
+
+/* Estilos para hacer el footer responsive */
+@media (max-width: 768px) {
+  footer {
+      flex-direction: column;
+      text-align: center;
+  }
+
+  .footer-left, .footer-right {
+      flex: auto; 
+  }
+
+  .social-icons {
+      margin-bottom: 10px;
+  }
+
+  .social-icons a {
+      margin-right: 5px;
+  }
+}
+
+.contenedor_imagen_detalle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imagen_detalle {
+  width: 50rem; /* Esto hará que la imagen ocupe el ancho completo de su contenedor */
+  height:auto; /* Esto permite que la altura se ajuste automáticamente para mantener la proporción */
+}
+
+.descripcion {
+  text-align: center; /* Alinea el texto al centro */
+  margin-top: 20px; /* Agrega un espacio entre la imagen y el texto */
+  padding: 35px;
+  
+}
+
+.contenedor_detalle_imagenes_adicionales {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 20px;
+}
+
+/* Estilo para la imagen del juego */
+.imagen_adicional{
+  width: 25rem;
+  /* height: auto; */
+  height: auto; 
+  object-fit: cover;    
+}
+
+
+.btn41-43 {
+  padding: 10px 25px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  background: transparent;
+  outline: none !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+}
+
+.btn-43 {
+  border: 2px solid rgb(255, 255, 255);
+  z-index: 1;
+  color: white;
+}
+
+.btn-43:after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 0;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background: rgb(255, 255, 255);
+  transition: all 0.3s ease;
+}
+
+.btn-43:hover {
+  color: rgb(0, 0, 0);
+}
+
+.btn-43:hover:after {
+  top: auto;
+  bottom: 0;
+  height: 100%;
+}
+
+.imagen-novedad {
+  width: 200px;
+  height: 150px;
+}
+
+.imagen-redondeada {
+  border-radius: 20px; /* Puedes ajustar este valor para cambiar el radio de las esquinas */
+}
+
+
+.titulo {
+  text-align: center;
+}
+
+
+.titulo-animado {
+  text-align: center;
+}
+
+.titulo-animado h1 {
+  font-size: 2em;
+  color: #ffffff;
+  position: relative;
+  display: inline-block;
+  animation: mover 3s linear infinite;
+}
+
+@keyframes mover {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-10px);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  75% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+
+.plano {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.plano div {
+  margin: 20px;
+  text-align: center;
+}
