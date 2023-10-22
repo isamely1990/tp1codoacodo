@@ -4,13 +4,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>productos</title>
+  <title>Contaco</title>
   <link rel="stylesheet" href="./assets/styles/estilos.css">
   <link rel="stylesheet" href="./assets/styles/productos.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="icon" href="assets/img/icons8-tetris-game-console-64.png">
+  <script src="./assets/js/contacto.js"></script>
 </head>
 
 <body>
+
   <header class="header">
     <div class="menu container">
       <a href="#" class="logo">GAMELAND</a>
@@ -25,8 +28,8 @@
             Inicio
           </a>
 
-          <a href="#" class="btn41-43 btn-43">
-            Servicios
+          <a href="./empresa.html" class="btn41-43 btn-43">
+            Empresa
           </a>
 
           <a href="./productos.html" class="btn41-43 btn-43">
@@ -44,40 +47,48 @@
       </nav>
     </div>
 
-    <div id="titulo_catalogo">
-      <h2>Catalogo de Juegos</h2>
+    <div class="header-content">
+      <h1> Enviános tu consulta</h1>
     </div>
-
   </header>
 
-  <main class="product">
 
-    <div style="flex: 1; padding-top: 0.5rem; align-items: flex-start; ">
+  <main>
 
-      <div style="display: flex; flex-direction: row; flex-wrap: wrap;" id="contenedor-checkboxes">
-        <!-- dibujar checkboxes x categorías segun datos de la api -->
-      </div>
-
+    <div class="titulo">
+      <h1>Contactanos</h1>
     </div>
+    <div class="contenedor-main">
+      <div class="contacto">
+        <form id="formularioContacto" class="form-contacto" onsubmit="return validarFormulario()">
+          <label for="nombre">Nombre:</label>
+          <input type="text" id="nombre" name="nombre">
+          <br><br>
 
+          <label for="email">Correo Electrónico:*</label>
+          <input type="email" id="email" name="email">
+          <br><br>
 
-    <div style="flex: 0.9; align-items: flex-start; padding-top: 0.5rem; padding-left: 3rem ;">
+          <label for="telefono">Teléfono:</label>
+          <input type="text" id="telefono" name="telefono">
+          <br><br>
 
-      <div style="display: flex; flex-direction: row;">
-        <input id="texto" style="width: 50%; padding: 1rem 0.75rem; border: 1px solid #ced4da; border-radius: 0.25rem;"
-          type="text" placeholder="Buscar Juego x Nombre">
+          <label for="consulta">Consulta:*</label>
+          <textarea id="consulta" name="consulta" rows="5"></textarea>
+          <br><br>
+
+          <input type="button" value="Borrar" class="btn-blanco" onclick="return borrarCampos()">
+          <input type="submit" value="Enviar">
+        </form>
+
+        <aside class="contenedor-complementario">
+          <img class="imagen-lateral"src="./assets/img/uncharted-4-a-thiefs-end-ps4-playstation-4-1.900x.jpg" alt="">
+        </aside>
+
       </div>
-
-      <div id="mensajeNoResultados" style="display: none;">
-        <p>No se encontraron resultados que cumplan con la condición de filtro.</p>
-      </div>
-
     </div>
-
-    <div class="catalogo" id="contenedor_tarjetas">
-    </div>
-
   </main>
+
 
   <footer>
     <div class="footer-left">
