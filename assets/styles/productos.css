@@ -1,49 +1,42 @@
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
-    list-style: none;
-    /* outline: 1px solid red;     */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+  /* outline: 1px solid red;     */
 }
 
 .header {
-    background-image: url( ../img/los-santos-gta-v__xtrafondos.com.jpg);
-    background-position: center center ; 
-    background-repeat: no-repeat ;
-    background-size: cover ;
-    display: flex ;
-    align-items: center ;
-    min-height: 25vh;
-    justify-content: center;
-    
- }
-
-
- h2 {
-    display:flexbox;
-    color: #FFFFFF;
-    font-size: 35px;
-    margin-bottom: 45px;
-} 
-
-
- #titulo_catalogo {
-    display:inline;
-    text-align: center; /* Centra el texto horizontalmente */
-  }
-
- 
-/* Estilo para el cuerpo de la página */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #B85E6F;
+  background-image: url(../img/los-santos-gta-v__xtrafondos.com.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  min-height: 25vh;
+  justify-content: center;
 }
 
+h2 {
+  display: flexbox;
+  font-size: 35px;
+  margin-bottom: 45px;
+}
+
+#titulo_catalogo {
+  display: inline;
+  text-align: center; /* Centra el texto horizontalmente */
+}
+
+/* Estilo para el cuerpo de la página */
+body {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  background-image: url("/assets/img/tile_background.png");
+}
 
 .body_detalle {
-  font-family: Arial, sans-serif;
-  background-color: #e0d9d9;
   min-height: 70vh;
 }
 
@@ -52,14 +45,14 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 30px auto 30px auto
+  margin: 30px auto 30px auto;
 }
 
 .contenedor-complementario {
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
 }
 
 .imagen-lateral {
@@ -67,105 +60,105 @@ body {
   width: 90%;
   border-radius: 10%;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
 }
 
 .btn-blanco {
   background-color: #e0d9d9;
   color: #333;
 }
+
+.titulo-negro {
+  color: #000;
+}
 /* Estilo para el contenedor del catálogo */
 .catalogo {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    margin: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 20px;
 }
 
 /* Estilo para cada tarjeta de juego */
 .juego {
-    background-color: #fff;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    margin: 10px;
-    padding: 20px;
-    width: 300px;
-    text-align: center;
+  background-color: #fff;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 10px;
+  padding: 20px;
+  width: 300px;
+  text-align: center;
 }
 
 /* Estilo para la imagen del juego */
 .juego img {
-    max-width: 100%;
-    /* height: auto; */
-    height: 10rem; 
-    object-fit: cover;    
+  max-width: 100%;
+  /* height: auto; */
+  height: 10rem;
+  object-fit: cover;
 }
 
 /* Estilo para la descripción del juego */
 .descripcion {
-    font-size: 16px;
-    margin-top: 10px;
+  font-size: 16px;
+  margin-top: 10px;
 }
 
 /* Estilo para el precio del juego */
 .precio {
-    font-size: 18px;
-    font-weight: bold;
-    color: #f00;
-    margin-top: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #f00;
+  margin-top: 10px;
 }
 
 /* Estilo para el botón de "Más Detalles" */
 .boton {
-    display: inline-block;
-    padding: 10px 20px;
-    margin-top: 10px;
-    background-color: #007bff;
-    color: #fff;
-    text-decoration: none;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 10px;
+  background-color: #3f3456;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 25px;
+  cursor: pointer;
 }
 
 /* Estilo para el botón cuando se pasa el cursor por encima */
 .boton:hover {
-    background-color: #0056b3;
+  background-color: #0056b3;
 }
 
 #mensajeNoResultados {
-    background-color: #ffcccc;
-    border: 1px solid #ff0000;
-    padding: 10px;
-    margin-top: 5px;
-    text-align: center;
-  }
-  
+  background-color: #ffcccc;
+  border: 1px solid #ff0000;
+  padding: 10px;
+  margin-top: 5px;
+  text-align: center;
+}
 
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  margin-left: 3rem;
+  width: 10rem;
+}
+
+.custom-checkbox {
+  margin-right: 10px;
+}
+
+@media screen and (max-width: 768px) {
   .checkbox-container {
-    display: flex;
-    align-items: center;
-    margin-bottom: 0.5rem;
-    margin-left: 3rem;
-    width: 10rem;
+    flex-direction: column;
   }
+}
 
-  .custom-checkbox {
-    margin-right: 10px;
-  }
+.checkbox-label {
+  color: rgb(14, 3, 3);
+}
 
-  
-  @media screen and (max-width: 768px) {
-    .checkbox-container {
-      flex-direction: column;
-    }
-  }
-
-  .checkbox-label {
-    color: rgb(14, 3, 3);
-  }
-
-
-  /* Estilos generales del footer */
+/* Estilos generales del footer */
 footer {
   background-color: #333;
   color: #fff;
@@ -178,8 +171,7 @@ footer {
 
 /* Estilos del lado izquierdo del footer */
 .footer-left {
-  flex: 3; 
-  
+  flex: 3;
 }
 
 .footer-left a {
@@ -187,13 +179,12 @@ footer {
 }
 
 .footer-left img {
-  width: 150px; 
+  width: 150px;
 }
 
 /* Estilos del lado derecho del footer */
 .footer-right {
-  flex: 1; 
-  
+  flex: 1;
 }
 
 .social-icons {
@@ -203,8 +194,8 @@ footer {
 .social-icons a {
   color: #fff;
   text-decoration: none;
-  margin-right: 10px; 
-  font-size: 20px; 
+  margin-right: 10px;
+  font-size: 20px;
 }
 
 .contact-info {
@@ -214,20 +205,21 @@ footer {
 /* Estilos para hacer el footer responsive */
 @media (max-width: 768px) {
   footer {
-      flex-direction: column;
-      text-align: center;
+    flex-direction: column;
+    text-align: center;
   }
 
-  .footer-left, .footer-right {
-      flex: auto; 
+  .footer-left,
+  .footer-right {
+    flex: auto;
   }
 
   .social-icons {
-      margin-bottom: 10px;
+    margin-bottom: 10px;
   }
 
   .social-icons a {
-      margin-right: 5px;
+    margin-right: 5px;
   }
 }
 
@@ -239,14 +231,15 @@ footer {
 
 .imagen_detalle {
   width: 50rem; /* Esto hará que la imagen ocupe el ancho completo de su contenedor */
-  height:auto; /* Esto permite que la altura se ajuste automáticamente para mantener la proporción */
+  height: auto; /* Esto permite que la altura se ajuste automáticamente para mantener la proporción */
 }
 
 .descripcion {
   text-align: center; /* Alinea el texto al centro */
   margin-top: 20px; /* Agrega un espacio entre la imagen y el texto */
   padding: 35px;
-  
+  font-weight: bold;
+  line-height: 1.5;
 }
 
 .contenedor_detalle_imagenes_adicionales {
@@ -257,19 +250,18 @@ footer {
 }
 
 /* Estilo para la imagen del juego */
-.imagen_adicional{
+.imagen_adicional {
   width: 25rem;
   /* height: auto; */
-  height: auto; 
-  object-fit: cover;    
+  height: auto;
+  object-fit: cover;
 }
-
 
 .btn41-43 {
   padding: 10px 25px;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
-  background: transparent;
+  background: #00000073;
   outline: none !important;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -314,11 +306,9 @@ footer {
   border-radius: 20px; /* Puedes ajustar este valor para cambiar el radio de las esquinas */
 }
 
-
 .titulo {
   text-align: center;
 }
-
 
 .titulo-animado {
   text-align: center;
@@ -326,7 +316,7 @@ footer {
 
 .titulo-animado h1 {
   font-size: 2em;
-  color: #ffffff;
+  color: #000;
   position: relative;
   display: inline-block;
   animation: mover 3s linear infinite;
@@ -350,7 +340,6 @@ footer {
   }
 }
 
-
 .plano {
   display: flex;
   justify-content: center;
@@ -363,16 +352,7 @@ footer {
   text-align: center;
 }
 
-
 /*rankings*/
-
-.contenedor-tablas {
-  width: 80%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 30px auto 0 auto;
-}
 
 .tabla-ranking {
   flex: 1;
@@ -380,7 +360,11 @@ footer {
   border-bottom: 1px solid #000;
   overflow-x: auto;
   flex-basis: 40%;
-  background: linear-gradient(to right, rgba(255, 251, 0, 0.52), rgba(66, 179, 234, 0.77));
+  background: linear-gradient(
+    to right,
+    rgba(255, 251, 0, 0.52),
+    rgba(66, 179, 234, 0.77)
+  );
   border-radius: 1%;
 }
 
@@ -397,7 +381,8 @@ footer {
   border-collapse: collapse;
 }
 
-.tabla-ranking th, .tabla-ranking td {
+.tabla-ranking th,
+.tabla-ranking td {
   border-bottom: 1px solid #000;
   padding: 10px;
   text-align: center;
@@ -408,36 +393,14 @@ footer {
   max-height: 100px;
 }
 
-/**/
-@media (max-width:680px) {
-  .tabla-ranking {
-    flex: 1;
-    margin: 10px;
-    border: 1px solid #000;
-    overflow-x: auto;
-    flex-basis: 90%;
-  }
-}
-
-@media (min-width:1920px) {
-  .tabla-ranking {
-    flex: 1;
-    margin: 10px;
-    border: 1px solid #000;
-    overflow-x: auto;
-    flex-basis: 20%;
-  }
-}
-
 /*termina rankings*/
-
 
 /* contacto */
 .contacto {
   display: grid;
   width: 100%;
   grid-template-columns: 1fr 1fr;
-  gap: 2em; 
+  gap: 2em;
 }
 
 form {
@@ -448,22 +411,56 @@ form {
   width: 100%;
 }
 
-.form-contacto input, .form-contacto textarea {
+.form-contacto input,
+.form-contacto textarea {
   width: 90%;
 }
 
-.form-contacto input[type=submit], .form-contacto input[type=button] {
+.form-contacto input[type="submit"],
+.form-contacto input[type="button"] {
   width: 20%;
   float: left;
   margin-right: 17px;
 }
 
-.form-contacto input[type=submit]:hover, .form-contacto input[type=button]:hover {
+.form-contacto input[type="submit"]:hover,
+.form-contacto input[type="button"]:hover {
   cursor: pointer;
 }
 
-.form-contacto input[type=submit]:active, .form-contacto input[type=button]:active {
+.form-contacto input[type="submit"]:active,
+.form-contacto input[type="button"]:active {
   box-shadow: 0px 4px 8px rgba(53, 51, 51, 0.2);
   background-color: #00bcd4;
 }
 /* termina contacto */
+
+@media (max-width: 1280px) {
+  .contacto {
+    grid-template-columns: 60% auto;
+  }
+}
+
+@media (max-width: 680px) {
+  .tabla-ranking {
+    flex: 1;
+    margin: 10px;
+    border: 1px solid #000;
+    overflow-x: auto;
+    flex-basis: 90%;
+  }
+
+  .contacto {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 1920px) {
+  .tabla-ranking {
+    flex: 1;
+    margin: 10px;
+    border: 1px solid #000;
+    overflow-x: auto;
+    flex-basis: 20%;
+  }
+}
