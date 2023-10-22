@@ -47,8 +47,33 @@ body {
   min-height: 70vh;
 }
 
+.contenedor-main {
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 30px auto 30px auto
+}
 
+.contenedor-complementario {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
 
+.imagen-lateral {
+  display: flex;
+  width: 90%;
+  border-radius: 10%;
+  justify-content: center;
+  align-items: center; 
+}
+
+.btn-blanco {
+  background-color: #e0d9d9;
+  color: #333;
+}
 /* Estilo para el contenedor del catálogo */
 .catalogo {
     display: flex;
@@ -405,3 +430,40 @@ footer {
 }
 
 /*termina rankings*/
+
+
+/* contacto */
+.contacto {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 1fr;
+  gap: 2em; 
+}
+
+form {
+  display: block;
+}
+
+.form-contacto {
+  width: 100%;
+}
+
+.form-contacto input, .form-contacto textarea {
+  width: 90%;
+}
+
+.form-contacto input[type=submit], .form-contacto input[type=button] {
+  width: 20%;
+  float: left;
+  margin-right: 17px;
+}
+
+.form-contacto input[type=submit]:hover, .form-contacto input[type=button]:hover {
+  cursor: pointer;
+}
+
+.form-contacto input[type=submit]:active, .form-contacto input[type=button]:active {
+  box-shadow: 0px 4px 8px rgba(53, 51, 51, 0.2);
+  background-color: #00bcd4;
+}
+/* termina contacto */
