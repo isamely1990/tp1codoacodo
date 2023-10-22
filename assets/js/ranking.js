@@ -20,27 +20,23 @@ document.addEventListener("DOMContentLoaded", function () {
     let rankingItem = "";
     // Iteramos el listado y creamos el elemento html por cada item
     list.forEach((item) => {
-      rankingItem += ` <li class="ranking-item">
-                <img class="ranking-item-image" src="${item.avatar}" alt="${item.name}">
-                <div class="ranking-item-content">
-                <div class="ranking-text">
-                <p>${item.first_name} ${item.last_name}</p>
-                <p>${item.score}</p>
-                <p>${item.location}</p>
-                </div>
-                </div>
-                </li>
-                `;
+      rankingItem += ` <tr>
+          <td><img src="${item.avatar}" alt="${item.first_name}"></td>
+          <td>${item.first_name} ${item.last_name}</td>
+          <td>${item.location}</td>
+          <td>${item.score}</td>
+          </tr>
+        `;
 
       divElement.innerHTML = rankingItem;
     });
   }
 
   /**
-   * Selecciona 5 items del mock al azar
-   * @param {*} jsonMock 
-   * @param {*} count 
-   * @returns 
+   * Selecciona 5 items del mock al azar y los ordena por score de mayor a menor
+   * @param {*} jsonMock
+   * @param {*} count
+   * @returns
    */
   function getRandomItemsFromMock(jsonMock, count) {
     const shuffledArray = jsonMock.slice();
@@ -53,6 +49,11 @@ document.addEventListener("DOMContentLoaded", function () {
       randomItems.push(selectedItem);
     }
 
-    return randomItems;
+    return randomItems.sort(compareDescNumber);
+  }
+
+  // Función de comparación personalizada para ordenar de mayor a menor
+  function compareDescNumber(a, b) {
+    return b.score - a.score;
   }
 });
