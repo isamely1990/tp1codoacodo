@@ -69,8 +69,6 @@ function traerDatosIndex(url, opcion) {
 }
 
 function crearMostrarImagenesNovedad(arregloJuegos, numeros, ubicacion) {
-  console.log({arregloJuegos, numeros, ubicacion})
-
   console.log(numeros)
   console.log(ubicacion)
 
@@ -90,8 +88,6 @@ function crearMostrarImagenesNovedad(arregloJuegos, numeros, ubicacion) {
 
 
 function crearMostrarAlgunosJuegos(arregloJuegos, numeros, ubicacion) {
-  console.log({arregloJuegos, numeros, ubicacion})
-
   let imagenes = ""
 
   for (let i = 0; i < numeros.length; i++) {
