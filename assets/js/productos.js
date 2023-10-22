@@ -69,6 +69,7 @@ function traerDatosIndex(url, opcion) {
 }
 
 function crearMostrarImagenesNovedad(arregloJuegos, numeros, ubicacion) {
+  console.log({arregloJuegos, numeros, ubicacion})
 
   console.log(numeros)
   console.log(ubicacion)
@@ -89,6 +90,7 @@ function crearMostrarImagenesNovedad(arregloJuegos, numeros, ubicacion) {
 
 
 function crearMostrarAlgunosJuegos(arregloJuegos, numeros, ubicacion) {
+  console.log({arregloJuegos, numeros, ubicacion})
 
   let imagenes = ""
 
@@ -194,7 +196,7 @@ function crearMostrarDetalleJuego(detalleJuego, ubicacion) {
 </div>
 
 <div class="system-requirements-container">
-<h2 class="system-requirements-title">Minimum System Requirements:</h2>
+<h2 class="titulo-negro">Minimum System Requirements:</h2>
 <ul class="system-requirements-list">
     <li><strong>OS:</strong>${minimumSystemRequirements.os}</li>
     <li><strong>Processor:</strong>${minimumSystemRequirements.processor}</li>
