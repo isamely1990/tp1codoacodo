@@ -273,6 +273,7 @@ footer {
   border: 2px solid rgb(255, 255, 255);
   z-index: 1;
   color: white;
+  text-decoration: none;
 }
 
 .btn-43:after {
