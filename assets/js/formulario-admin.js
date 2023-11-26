@@ -1,3 +1,5 @@
+//TODO: Conectar a la base y con una query obtener todos los valores de la columna, acumular para obtener un listado de opciones
+
 generoMock = [
   "MMORPG",
   "Social",
@@ -43,18 +45,19 @@ desarrolladorMock = [
 
 document.addEventListener("DOMContentLoaded", () => {
   const genero = {
-    id: "genero",
+    id: "genre",
     lista: generoMock,
   };
   const desarrollador = {
-    id: "desarrollador",
+    id: "developer",
     lista: desarrolladorMock,
   };
   const editor = {
-    id: "editor",
+    id: "publisher",
     lista: editorMock,
   };
 
+  // Por cada mock, obtiene un elemento html donde se inserta y llama al método que generará las opciones en el selector
   [genero, desarrollador, editor].forEach((selector) => {
     let selectorElement = document.getElementById(selector.id);
     defineListaSelectorSimple(selector.lista, selectorElement);

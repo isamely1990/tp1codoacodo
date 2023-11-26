@@ -50,60 +50,60 @@
                     <form class="needs-validation" novalidate="">
                         <div class="row g-3">
                             <div class="col-12">
-                                <label for="nombreJuego" class="form-label">Nombre del juego</label>
-                                <input type="text" class="form-control" id="nombreJuego" placeholder="" value=""
+                                <label for="title" class="form-label">Nombre del juego</label>
+                                <input type="text" class="form-control" id="title" placeholder="" value=""
                                     required="">
                                 <div class="invalid-feedback">
                                     Campo requerido.
                                 </div>
                             </div>
 
-                            <div class="col-sm-6">
-                                <label for="intro" class="form-label">Introducción</label>
-                                <textarea class="form-control" placeholder="Breve síntesis" id="intro"
-                                    style="height: 100px"></textarea>
-                                <div class="invalid-feedback">
-                                    Campo requerido.
-                                </div>
-                            </div>
-
-                            <div class="col-sm-6">
-                                <label for="descripcion" class="form-label">Descripción</label>
-                                <textarea class="form-control" placeholder="Descripción completa" id="descripcion"
-                                    style="height: 100px"></textarea>
-                                <div class="invalid-feedback">
-                                    Campo requerido.
-                                </div>
-                            </div>
-
                             <div class="col-12">
-                                <label for="url" class="form-label">Url del juego <span
+                                <label for="short_description" class="form-label">Descripción</label>
+                                <textarea class="form-control" placeholder="Descripción del juego" id="short_description"
+                                    style="height: 100px"></textarea>
+                                <div class="invalid-feedback">
+                                    Campo requerido.
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label for="thumbnail" class="form-label">Url imagen vista previa <span
                                         class="text-body-secondary">(Optional)</span></label>
-                                <input type="text" class="form-control" id="url" placeholder="https://www.miurl.com">
+                                <input type="text" class="form-control" id="thumbnail" placeholder="https://www.freetogame.com/open/armored-warfare">
+                                <div class="invalid-feedback">
+                                    Campo requerido.
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label for="game_url" class="form-label">Url del juego <span
+                                        class="text-body-secondary">(Optional)</span></label>
+                                <input type="text" class="form-control" id="game_url" placeholder="https://www.miurl.com">
                                 <div class="invalid-feedback">
                                     Campo requerido.
                                 </div>
                             </div>
 
                             <div class="col-md-4">
-                                <label for="genero" class="form-label">Género</label>
-                                <select class="form-select" id="genero" required=""></select>
+                                <label for="genre" class="form-label">Género</label>
+                                <select class="form-select" id="genre" required=""></select>
                                 <div class="invalid-feedback">
                                     Campo requerido.
                                 </div>
                             </div>
 
                             <div class="col-md-4">
-                                <label for="desarrollador" class="form-label">Desarrollador</label>
-                                <select class="form-select" id="desarrollador" required=""></select>
+                                <label for="developer" class="form-label">Desarrollador</label>
+                                <select class="form-select" id="developer" required=""></select>
                                 <div class="invalid-feedback">
                                     Campo requerido.
                                 </div>
                             </div>
 
                             <div class="col-md-4">
-                                <label for="editor" class="form-label">Editor</label>
-                                <select class="form-select" id="editor" required=""></select>
+                                <label for="publisher" class="form-label">Editor</label>
+                                <select class="form-select" id="publisher" required=""></select>
                                 <div class="invalid-feedback">
                                     Campo requerido.
                                 </div>
@@ -112,8 +112,8 @@
 
 
                             <div class="col-md-5">
-                                <label for="fecha_lanzamiento" class="form-label">Fecha de lanzamiento</label>
-                                <input type="date" class="form-control" id="fecha_lanzamiento" required="">
+                                <label for="release_date" class="form-label">Fecha de lanzamiento</label>
+                                <input type="date" class="form-control" id="release_date" required="">
                                 <div class="invalid-feedback">
                                     Campo requerido.
                                 </div>
@@ -145,10 +145,10 @@
                         <hr class="my-4">
                         <div class="row">
                             <div class="col-2">
-                                <button class="w-100 btn btn-primary btn-sm" type="submit">Guardar</button>
+                                <button class="w-100 btn-sm btn-primary--save" type="submit">Guardar</button>
                             </div>
                             <div class="col-2">
-                                <button class="w-100 btn btn-secondary btn-sm" type="button">Cancelar</button>
+                                <button class="w-100 btn-sm btn-secondary--cancel" type="button">Cancelar</button>
                             </div>
                         </div>
                     </form>
