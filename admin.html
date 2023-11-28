@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login Administrador</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        /* Estilos para la pantalla principal */
+        .main-screen {
+            text-align: center;
+        }
+
+        .main-screen h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .main-screen button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            background-color: #3498db;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .main-screen button:hover {
+            background-color: #2980b9;
+        }
+
+        /* Estilos para la pantalla de inicio de sesión */
+        .login-screen {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-screen h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .login-screen input[type="text"],
+        .login-screen input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        .login-screen button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: #3498db;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-screen button[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+
+        .login-screen a {
+            text-decoration: none;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .login-screen a:hover {
+            color: #333;
+        }
+    </style>
+
+    <link rel="stylesheet" href="./assets/styles/estilos.css">
+    <link rel="stylesheet" href="./assets/styles/productos.css">
+</head>
+
+<body>
+    <div class="login-screen" id="loginScreen">
+        <form action="#" onsubmit="validarLogin(event)">
+            <h2>Iniciar Sesión</h2>
+            <input type="text" placeholder="Nombre de usuario" id="username" required>
+            <input type="password" placeholder="Contraseña" id="password" required>
+            <button type="submit">Ingresar</button>
+            <a href="index.html" onclick="ocultarLogin()">Cerrar</a>
+        </form>
+    </div>
+
+    <script>
+        function validarLogin(event) {
+            event.preventDefault();
+
+            // a partir de aca ponemos las validaciones que se nos ocurran
+            // y una vez que todo este correcto te dirige a la pantalla 
+            // que corresponda , en nuestro caso , a la que permita hacer el crud
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Supongamos que las credenciales correctas son 'usuario' y 'contraseña'
+            if (username === 'usuario' && password === 'contraseña') {
+
+                // aca se pone la pagina por ejemplo , donde se inicia el crud 
+                window.location.href = 'crud.html';
+            } else {
+                alert('Datos incorrectos. Por favor, verificar e intentar de nuevo.');
+            }
+        }
+    </script>
+
+</body>
+
+</html>
