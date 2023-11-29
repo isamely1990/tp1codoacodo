@@ -149,11 +149,7 @@ function traerDatosDetalle(urldet) {
   const queryString = location.search
   const params = new URLSearchParams(queryString)
   const id = params.get("id")
-
-  let urltot = "//127.0.0.1:5000/crud/2"
     
-  alert(urltot)
-
   // fetch(urldet + 'crud/' + id)
   fetch(url +'crud/' + id)
     .then(response => response.json())
@@ -211,11 +207,38 @@ detalle = ` <div class="contenedor_imagen_detalle">
 </div>
 
 <div class="system-requirements-container">
-<h2 class="titulo-negro">Minimum System Requirements:</h2>
+<h2 class="titulo-negro">Detalles</h2>
 </div> 
-`
 
-  ubicacion.innerHTML = detalle
+<table id="tablaDetalles">
+    
+    <tr>
+      <th>Título</th>
+      <th>Detalle</th>
+    </tr>
+    
+    <tr>
+      <td>Género</td>
+      <td <p>${detalleJuego.genre}</p> </td>
+    </tr>
+    
+    <tr>
+      <td>Plataforma</td>
+      <td <p>${detalleJuego.platform}</p> </td>
+    </tr>
+    
+    <tr>
+      <td>Desarrollador</td>
+      <td <p>${detalleJuego.developer}</p> </td>
+    </tr>
+    <tr>
+      <td>Fecha de Presentación</td>
+      <td <p>${detalleJuego.release_date}</p> </td>
+    </tr>
+  </table> 
+  `
+
+ubicacion.innerHTML = detalle
 
 }
 
