@@ -9,39 +9,37 @@ let algunosJuegosContenedor = document.querySelector("#contenedor_algunos_juegos
 
 let detalleImagenesAdicionales = document.querySelector("#contenedor_detalle_imagenes_adicionales")
 
-
-
-// const url = 'https://free-to-play-games-database.p.rapidapi.com/api/filter?tag=3d.mmorpg.fantasy.pvp&platform=pc';
-// const url = 'https://free-to-play-games-database.p.rapidapi.com/api/games';
-// const url = 'https://free-to-play-games-database.p.rapidapi.com/api/games?platform=pc';
-// const url = 'https://free-to-play-games-database.p.rapidapi.com/api/games?platform=pc';
-
-const url = 'https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=alphabetical';
-
+/* const url = 'https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=alphabetical';
 const urldet = 'https://free-to-play-games-database.p.rapidapi.com/api/game?id=';
+ */
+const url    = '//127.0.0.1:5000/';
+const urldet = '//127.0.0.1:5000/';
 
-const options = {
+
+/* const options = {
   method: 'GET',
   headers: {
     'X-RapidAPI-Key': '017c8eb89bmsh86d069438677a3ep13ae98jsn43c886387eca',
     'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com'
   }
 };
+ */
+
 
 if (document.title == "productos") {
-  traerDatos(url, options)
+  traerDatos(url)
 }
 else if (document.title == "detalle") {
-  traerDatosDetalle(urldet, options);
+  traerDatosDetalle(urldet);
 } else if (document.title == "index") {
-  traerDatosIndex(url, options);
+  traerDatosIndex(url);
 }
 
 
-function traerDatosIndex(url, opcion) {
+function traerDatosIndex(url) {
   // Obtener datos desde la api (url) 
   // Procesar segun que pagina este activada
-  fetch(url, opcion)
+  fetch(url+'crud')
     .then(response => response.json())
     .then(datosApi => {
       datosObtenidos = datosApi
@@ -109,10 +107,10 @@ function crearMostrarAlgunosJuegos(arregloJuegos, numeros, ubicacion) {
 }
 
 
-function traerDatos(url, opcion) {
+function traerDatos(url) {
   // Obtener datos desde la api (url) 
   // Procesar segun que pagina este activada
-  fetch(url, opcion)
+  fetch(url+'crud')
     .then(response => response.json())
     .then(datosApi => {
       datosObtenidos = datosApi
@@ -137,11 +135,9 @@ function crearMostrarTarjetas(arregloJuegos, ubicacion) {
     <p class="descripcion">${juego.title}</p>
     <p class="genero">Genero : ${juego.genre}</p>
     <p class="precio">$19.99</p>
-
-    <a href="../../detalle.html?id=${juego.id}" class="boton">Más Detalles</a>
-
+    <a href="../../detalle.html?id=${juego.id}" class="boton">Más Detalles</a> 
+    
     </div>`
-
 
   }) //aca termina el forEach
 
@@ -149,16 +145,21 @@ function crearMostrarTarjetas(arregloJuegos, ubicacion) {
 
 }
 
-
-function traerDatosDetalle(urldet, opcion) {
+function traerDatosDetalle(urldet) {
   const queryString = location.search
   const params = new URLSearchParams(queryString)
   const id = params.get("id")
 
-  fetch(urldet + id, opcion)
+  let urltot = "//127.0.0.1:5000/crud/2"
+    
+  alert(urltot)
+
+  // fetch(urldet + 'crud/' + id)
+  fetch(url +'crud/' + id)
     .then(response => response.json())
     .then(datosApi => {
       datosDetalle = datosApi
+      
       console.log(datosDetalle)
 
       crearMostrarDetalleJuego(datosDetalle, detalleContenedor);
@@ -166,7 +167,7 @@ function traerDatosDetalle(urldet, opcion) {
 
     })
     .catch(error => console.log(error))
-}
+  }
 
 
 function crearMostrarDetalleJuego(detalleJuego, ubicacion) {
@@ -175,15 +176,8 @@ function crearMostrarDetalleJuego(detalleJuego, ubicacion) {
 
   let minimumSystemRequirements = detalleJuego.minimum_system_requirements;
 
-  /*   // Accediendo a propiedades específicas dentro de minimum_system_requirements
-    let os        = minimumSystemRequirements.os;
-    let processor = minimumSystemRequirements.processor;
-    let memory    = minimumSystemRequirements.memory;
-    let graphics  = minimumSystemRequirements.graphics;
-    let storage   = minimumSystemRequirements.storage;
-   */
-
-  detalle = ` <div class="contenedor_imagen_detalle">
+  
+/*   detalle = ` <div class="contenedor_imagen_detalle">
     <img src="${detalleJuego.thumbnail}" class="imagen_detalle" alt="">
 </div>
 
@@ -200,7 +194,25 @@ function crearMostrarDetalleJuego(detalleJuego, ubicacion) {
     <li><strong>Graphics:</strong>${minimumSystemRequirements.graphics}</li>
     <li><strong>Storage:</strong>${minimumSystemRequirements.storage}</li>
 </ul>
+</div> 
+`
+ */
+
+detalle = ` <div class="contenedor_imagen_detalle">
+<img src="${detalleJuego.thumbnail}" class="imagen_detalle" alt="">
 </div>
+
+<div class="titulo">
+<p>${detalleJuego.title}</p>
+</div>
+
+<div class="descripcion">
+<p>${detalleJuego.short_description}</p>
+</div>
+
+<div class="system-requirements-container">
+<h2 class="titulo-negro">Minimum System Requirements:</h2>
+</div> 
 `
 
   ubicacion.innerHTML = detalle
@@ -213,13 +225,13 @@ function crearMostrarImagenesAdicionales(detalleJuego, ubicacion) {
 
   let detalle = ""
 
-  detalleJuego.screenshots.forEach(imagen => {
+/*   detalleJuego.screenshots.forEach(imagen => {
     detalle += `<div class="imagen_adicional">
        <img src="${imagen.image}" alt="Juego 1">
         </div>`
 
   }) //aca termina el forEach
-
+ */
   ubicacion.innerHTML = detalle
 
 }
