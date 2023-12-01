@@ -3,45 +3,50 @@ let datosObtenidos = {}
 let datosObtenidos1 = {}
 let tarjetasContenedor = document.querySelector("#contenedor_tarjetas")
 let chekboxesContenedor = document.querySelector("#contenedor-checkboxes")
+let listaContenedor = document.querySelector("#contenedor-lista")
+
 let detalleContenedor = document.querySelector("#contenedor_detalle")
 let novedadesContenedor = document.querySelector("#seccion-novedades")
 let algunosJuegosContenedor = document.querySelector("#contenedor_algunos_juegos")
 
 let detalleImagenesAdicionales = document.querySelector("#contenedor_detalle_imagenes_adicionales")
 
-
-
-// const url = 'https://free-to-play-games-database.p.rapidapi.com/api/filter?tag=3d.mmorpg.fantasy.pvp&platform=pc';
-// const url = 'https://free-to-play-games-database.p.rapidapi.com/api/games';
-// const url = 'https://free-to-play-games-database.p.rapidapi.com/api/games?platform=pc';
-// const url = 'https://free-to-play-games-database.p.rapidapi.com/api/games?platform=pc';
-
-const url = 'https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=alphabetical';
-
+/* const url = 'https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=alphabetical';
 const urldet = 'https://free-to-play-games-database.p.rapidapi.com/api/game?id=';
+ */
+const url    = '//127.0.0.1:5000/';
+const urldet = '//127.0.0.1:5000/';
 
-const options = {
+
+/* const options = {
   method: 'GET',
   headers: {
     'X-RapidAPI-Key': '017c8eb89bmsh86d069438677a3ep13ae98jsn43c886387eca',
     'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com'
   }
 };
+ */
+
+
 
 if (document.title == "productos") {
-  traerDatos(url, options)
+  traerDatos(url)
 }
 else if (document.title == "detalle") {
-  traerDatosDetalle(urldet, options);
-} else if (document.title == "index") {
-  traerDatosIndex(url, options);
+  traerDatosDetalle(urldet);
+}
+else if (document.title == "index") {
+  traerDatosIndex(url);
+} 
+else if (document.title == "CRUD") {
+  traerDatosCrud(url);
 }
 
 
-function traerDatosIndex(url, opcion) {
+function traerDatosIndex(url) {
   // Obtener datos desde la api (url) 
   // Procesar segun que pagina este activada
-  fetch(url, opcion)
+  fetch(url+'crud')
     .then(response => response.json())
     .then(datosApi => {
       datosObtenidos = datosApi
@@ -109,10 +114,10 @@ function crearMostrarAlgunosJuegos(arregloJuegos, numeros, ubicacion) {
 }
 
 
-function traerDatos(url, opcion) {
+function traerDatos(url) {
   // Obtener datos desde la api (url) 
   // Procesar segun que pagina este activada
-  fetch(url, opcion)
+  fetch(url+'crud')
     .then(response => response.json())
     .then(datosApi => {
       datosObtenidos = datosApi
@@ -137,11 +142,9 @@ function crearMostrarTarjetas(arregloJuegos, ubicacion) {
     <p class="descripcion">${juego.title}</p>
     <p class="genero">Genero : ${juego.genre}</p>
     <p class="precio">$19.99</p>
-
-    <a href="../../detalle.html?id=${juego.id}" class="boton">Más Detalles</a>
-
+    <a href="../../detalle.html?id=${juego.id}" class="boton">Más Detalles</a> 
+    
     </div>`
-
 
   }) //aca termina el forEach
 
@@ -149,16 +152,17 @@ function crearMostrarTarjetas(arregloJuegos, ubicacion) {
 
 }
 
-
-function traerDatosDetalle(urldet, opcion) {
+function traerDatosDetalle(urldet) {
   const queryString = location.search
   const params = new URLSearchParams(queryString)
   const id = params.get("id")
-
-  fetch(urldet + id, opcion)
+    
+  // fetch(urldet + 'crud/' + id)
+  fetch(url +'crud/' + id)
     .then(response => response.json())
     .then(datosApi => {
       datosDetalle = datosApi
+      
       console.log(datosDetalle)
 
       crearMostrarDetalleJuego(datosDetalle, detalleContenedor);
@@ -166,7 +170,7 @@ function traerDatosDetalle(urldet, opcion) {
 
     })
     .catch(error => console.log(error))
-}
+  }
 
 
 function crearMostrarDetalleJuego(detalleJuego, ubicacion) {
@@ -175,15 +179,8 @@ function crearMostrarDetalleJuego(detalleJuego, ubicacion) {
 
   let minimumSystemRequirements = detalleJuego.minimum_system_requirements;
 
-  /*   // Accediendo a propiedades específicas dentro de minimum_system_requirements
-    let os        = minimumSystemRequirements.os;
-    let processor = minimumSystemRequirements.processor;
-    let memory    = minimumSystemRequirements.memory;
-    let graphics  = minimumSystemRequirements.graphics;
-    let storage   = minimumSystemRequirements.storage;
-   */
-
-  detalle = ` <div class="contenedor_imagen_detalle">
+  
+/*   detalle = ` <div class="contenedor_imagen_detalle">
     <img src="${detalleJuego.thumbnail}" class="imagen_detalle" alt="">
 </div>
 
@@ -200,10 +197,55 @@ function crearMostrarDetalleJuego(detalleJuego, ubicacion) {
     <li><strong>Graphics:</strong>${minimumSystemRequirements.graphics}</li>
     <li><strong>Storage:</strong>${minimumSystemRequirements.storage}</li>
 </ul>
-</div>
+</div> 
 `
+ */
 
-  ubicacion.innerHTML = detalle
+detalle = ` <div class="contenedor_imagen_detalle">
+<img src="${detalleJuego.thumbnail}" class="imagen_detalle" alt="">
+</div>
+
+<div class="titulo">
+<p>${detalleJuego.title}</p>
+</div>
+
+<div class="descripcion">
+<p>${detalleJuego.short_description}</p>
+</div>
+
+<div class="system-requirements-container">
+<h2 class="titulo-negro">Detalles</h2>
+</div> 
+
+<table id="tablaDetalles">
+    
+    <tr>
+      <th>Título</th>
+      <th>Detalle</th>
+    </tr>
+    
+    <tr>
+      <td>Género</td>
+      <td <p>${detalleJuego.genre}</p> </td>
+    </tr>
+    
+    <tr>
+      <td>Plataforma</td>
+      <td <p>${detalleJuego.platform}</p> </td>
+    </tr>
+    
+    <tr>
+      <td>Desarrollador</td>
+      <td <p>${detalleJuego.developer}</p> </td>
+    </tr>
+    <tr>
+      <td>Fecha de Presentación</td>
+      <td <p>${detalleJuego.release_date}</p> </td>
+    </tr>
+  </table> 
+  `
+
+ubicacion.innerHTML = detalle
 
 }
 
@@ -213,17 +255,87 @@ function crearMostrarImagenesAdicionales(detalleJuego, ubicacion) {
 
   let detalle = ""
 
-  detalleJuego.screenshots.forEach(imagen => {
+/*   detalleJuego.screenshots.forEach(imagen => {
     detalle += `<div class="imagen_adicional">
        <img src="${imagen.image}" alt="Juego 1">
         </div>`
 
   }) //aca termina el forEach
-
+ */
   ubicacion.innerHTML = detalle
 
 }
 
+
+// MANEJO DATOS PARA CRUD.HTML
+function traerDatosCrud(url) {
+  // Obtener datos desde la api (url) 
+  // Procesar segun que pagina este activada
+  fetch(url+'crud')
+    .then(response => response.json())
+    .then(datosApi => {
+      datosObtenidos = datosApi
+      console.log(datosObtenidos)
+      crearMostrarLista(datosObtenidos, listaContenedor)
+
+    })
+    .catch(error => console.log(error))
+}
+
+
+
+function crearMostrarLista(juegos,ubicacion) {
+  
+  // Iterar a través del JSON de datos
+  juegos.forEach((juego) => {
+    // Crear una nueva fila <tr>
+    const nuevaFila = document.createElement('tr');
+
+    // Agregar los datos a las celdas de la fila
+    nuevaFila.innerHTML = `
+      <td>${juego.id}</td>
+      <td>${juego.title}</td>
+      <td>${juego.genre}</td>
+      <td style="width: 250px;">${juego.developer}</td>
+      <td style="width: 250px;">${juego.publisher}</td>
+      <td>
+
+      <div>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Editar
+        </button>
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Eliminar
+        </button>
+      </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminar</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                Esta seguro que desea eliminar esta informacion?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Atras</button>
+                <button type="button" class="btn btn-danger">Eliminar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        </td>
+    `;
+
+    // Agregar la nueva fila al cuerpo de la tabla
+    ubicacion.appendChild(nuevaFila);
+  });
+}
 
 
 function seleccionarNumerosAlAzar(cantidadNumeros) {
