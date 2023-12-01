@@ -3,6 +3,8 @@ let datosObtenidos = {}
 let datosObtenidos1 = {}
 let tarjetasContenedor = document.querySelector("#contenedor_tarjetas")
 let chekboxesContenedor = document.querySelector("#contenedor-checkboxes")
+let listaContenedor = document.querySelector("#contenedor-lista")
+
 let detalleContenedor = document.querySelector("#contenedor_detalle")
 let novedadesContenedor = document.querySelector("#seccion-novedades")
 let algunosJuegosContenedor = document.querySelector("#contenedor_algunos_juegos")
@@ -26,13 +28,18 @@ const urldet = '//127.0.0.1:5000/';
  */
 
 
+
 if (document.title == "productos") {
   traerDatos(url)
 }
 else if (document.title == "detalle") {
   traerDatosDetalle(urldet);
-} else if (document.title == "index") {
+}
+else if (document.title == "index") {
   traerDatosIndex(url);
+} 
+else if (document.title == "CRUD") {
+  traerDatosCrud(url);
 }
 
 
@@ -259,6 +266,76 @@ function crearMostrarImagenesAdicionales(detalleJuego, ubicacion) {
 
 }
 
+
+// MANEJO DATOS PARA CRUD.HTML
+function traerDatosCrud(url) {
+  // Obtener datos desde la api (url) 
+  // Procesar segun que pagina este activada
+  fetch(url+'crud')
+    .then(response => response.json())
+    .then(datosApi => {
+      datosObtenidos = datosApi
+      console.log(datosObtenidos)
+      crearMostrarLista(datosObtenidos, listaContenedor)
+
+    })
+    .catch(error => console.log(error))
+}
+
+
+
+function crearMostrarLista(juegos,ubicacion) {
+  
+  // Iterar a través del JSON de datos
+  juegos.forEach((juego) => {
+    // Crear una nueva fila <tr>
+    const nuevaFila = document.createElement('tr');
+
+    // Agregar los datos a las celdas de la fila
+    nuevaFila.innerHTML = `
+      <td>${juego.id}</td>
+      <td>${juego.title}</td>
+      <td>${juego.genre}</td>
+      <td style="width: 250px;">${juego.developer}</td>
+      <td style="width: 250px;">${juego.publisher}</td>
+      <td>
+
+      <div>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Editar
+        </button>
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Eliminar
+        </button>
+      </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminar</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                Esta seguro que desea eliminar esta informacion?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Atras</button>
+                <button type="button" class="btn btn-danger">Eliminar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        </td>
+    `;
+
+    // Agregar la nueva fila al cuerpo de la tabla
+    ubicacion.appendChild(nuevaFila);
+  });
+}
 
 
 function seleccionarNumerosAlAzar(cantidadNumeros) {
