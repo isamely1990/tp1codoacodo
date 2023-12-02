@@ -42,6 +42,16 @@ else if (document.title == "CRUD") {
   traerDatosCrud(url);
 }
 
+// formulario admin
+const urlParams = new URLSearchParams(window.location.search);
+console.log('window location', window.location)
+let editarJuegoId = urlParams.get('edit_id');
+
+if(editarJuegoId) {
+  traerDatosDetalle(urldet, editarJuegoId);
+}
+
+// termina formulario admin
 
 function traerDatosIndex(url) {
   // Obtener datos desde la api (url) 
@@ -152,25 +162,38 @@ function crearMostrarTarjetas(arregloJuegos, ubicacion) {
 
 }
 
-function traerDatosDetalle(urldet) {
+function traerDatosDetalle(urldet, editarJuegoId) {
   const queryString = location.search
   const params = new URLSearchParams(queryString)
   const id = params.get("id")
     
   // fetch(urldet + 'crud/' + id)
-  fetch(url +'crud/' + id)
+  // si recibe el argumento editarJuegoId lo usa, y sería para mostrar en el formulario de edición
+  // de lo contrario, usa el id simple si lo obiene, es decir la vista "detalle"
+  fetch(url +'crud/' + (editarJuegoId || id))
     .then(response => response.json())
     .then(datosApi => {
       datosDetalle = datosApi
       
       console.log(datosDetalle)
 
-      crearMostrarDetalleJuego(datosDetalle, detalleContenedor);
-      crearMostrarImagenesAdicionales(datosDetalle, detalleImagenesAdicionales);
+      // Genera la vista de "detalle"
+      if (id) {
+        crearMostrarDetalleJuego(datosDetalle, detalleContenedor);
+        crearMostrarImagenesAdicionales(datosDetalle, detalleImagenesAdicionales);
+      }
+
+      // Genera la vista de formulario de edición, tiene un timeout para dar tiempo a que se formen los selectores
+      if(editarJuegoId) {
+        setTimeout(() => {
+          completarFormularioEdicion(datosDetalle)
+        }, 500);
+      }
+      
 
     })
     .catch(error => console.log(error))
-  }
+}
 
 
 function crearMostrarDetalleJuego(detalleJuego, ubicacion) {
@@ -301,9 +324,11 @@ function crearMostrarLista(juegos,ubicacion) {
       <td>
 
       <div>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          Editar
-        </button>
+        <a href="/formulario.html?edit_id=${juego.id}"">
+          <button type="button" class="btn btn-primary">
+            Editar
+          </button>
+        </a>
         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
           Eliminar
         </button>
@@ -356,7 +381,67 @@ function seleccionarNumerosAlAzar(cantidadNumeros) {
   return numerosSeleccionados;
 }
 
+// Formulario de edición
 
+/**
+ * Completa los campos del form con los valores del juego
+ */
+function completarFormularioEdicion(datosJuego) {
+  // Convertir la cadena de fecha a un objeto Date de JavaScript
+  const fechaObjeto = new Date(datosJuego.release_date);
+  // Formatear la fecha en el formato 'YYYY-MM-DD'
+  const fechaFormateada = fechaObjeto.toISOString().split("T")[0];
+
+  //Defino la plataforma del juego con boleanos
+  esWindowsPc = datosJuego.platform === "PC (Windows)";
+  esWebBrowser = datosJuego.platform === "Web Browser";
+
+  document.getElementById("title").value = datosJuego.title;
+  document.getElementById("short_description").value =
+    datosJuego.short_description;
+  document.getElementById("thumbnail").value = datosJuego.thumbnail;
+  document.getElementById("game_url").value = datosJuego.game_url;
+  document.getElementById("release_date").value = fechaFormateada;
+  document.getElementById("windows").checked = esWindowsPc;
+  document.getElementById("web").checked = esWebBrowser;
+
+  const selectorGenero = document.getElementById("genre");
+  const selectorDeveloper = document.getElementById("developer");
+  const selectorPublisher = document.getElementById("publisher");
+
+  gen = {
+    select: selectorGenero,
+    valor: datosJuego.genre
+  };
+  dev = {
+    select: selectorDeveloper,
+    valor: datosJuego.developer
+  };
+  pub = {
+    select: selectorPublisher,
+    valor: datosJuego.publisher
+  };
+
+  [gen, dev, pub].forEach((selector) => {
+    seteaValorSelector(selector.select, selector.valor)
+  })
+  
+}
+
+/**
+ * Setea la opción seleccionada en un selector
+ * @param {*} selector 
+ * @param {*} valor 
+ */
+function seteaValorSelector(selector, valor) {
+  // Iterar sobre las opciones y establecer el atributo selected si coincide con el valor deseado
+  for (let i = 0; i < selector.options.length; i++) {
+    if (selector.options[i].value === valor) {
+      selector.options[i].selected = true;
+      break; // Romper el bucle una vez que se haya establecido el valor
+    }
+  }
+}
 
 
 

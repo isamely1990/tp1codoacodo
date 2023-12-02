@@ -138,6 +138,14 @@ class Catalogo_juegos:
         else:
             print("Juego no encontrado.")
 
+    #----------------------------------------------------------------
+    def obtener_generos_editor_desarrollador(self):
+        # obtenemos las opciones únicas para listar en el formulario
+        self.cursor.execute("SELECT DISTINCT genre, publisher, developer FROM juegos_api;")
+
+        opciones = self.cursor.fetchall()
+        return opciones
+
 # -------------------------------------------------------------------
 #--------------------------------------------------------------------
 # Cuerpo del programa
@@ -251,6 +259,11 @@ def eliminar_juego(id):
     else:
         return jsonify({"mensaje": "Error al eliminar el producto"}), 500
     
+#--------------------------------------------------------------------
+@app.route("/formulario", methods=["GET"])
+def obtener_generos_editor_desarrollador():
+    opciones = catalogo.obtener_generos_editor_desarrollador()
+    return jsonify(opciones)
 
 #--------------------------------------------------------------------
 if __name__ == "__main__":
