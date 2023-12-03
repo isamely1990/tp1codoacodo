@@ -81,8 +81,4 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  function guardarEdicion(event) {
-    event.preventDefault();
-    console.log(event)
-  }
 });
