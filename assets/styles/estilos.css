@@ -51,6 +51,7 @@ img {
   font-size: 32px;
   font-weight: 800;
   text-transform: uppercase;
+  text-decoration: none;
 }
 
 .menu .navbar ul li {

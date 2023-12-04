@@ -273,6 +273,7 @@ footer {
   border: 2px solid rgb(255, 255, 255);
   z-index: 1;
   color: white;
+  text-decoration: none;
 }
 
 .btn-43:after {
@@ -321,6 +322,22 @@ footer {
   display: inline-block;
   animation: mover 3s linear infinite;
 }
+
+
+table {
+  border-collapse: collapse;
+  width: 50%;
+  margin: 20px auto;
+}
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+th {
+  background-color: #f2f2f2;
+}
+
 
 @keyframes mover {
   0% {
