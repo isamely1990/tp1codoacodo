@@ -12,6 +12,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="./assets/js/formulario-admin.js"></script>
+    <script src="./assets/js/productos.js"></script>
+
 
     <title>Formulario de juego</title>
 </head>
@@ -41,7 +43,7 @@
     <div class="container">
         <main>
             <div class="py-5 text-center">
-                <p class="lead">Complete el siguiente formulario para dar de alta o editar un juego</p>
+                <p class="lead">Complete el siguiente formulario</p>
             </div>
 
             <div class="row g-5 mb-5">
@@ -69,7 +71,7 @@
 
                             <div class="col-sm-6">
                                 <label for="thumbnail" class="form-label">Url imagen vista previa <span
-                                        class="text-body-secondary">(Optional)</span></label>
+                                        class="text-body-secondary">(Opcional)</span></label>
                                 <input type="text" class="form-control" id="thumbnail" placeholder="https://www.freetogame.com/open/armored-warfare">
                                 <div class="invalid-feedback">
                                     Campo requerido.
@@ -78,7 +80,7 @@
 
                             <div class="col-sm-6">
                                 <label for="game_url" class="form-label">Url del juego <span
-                                        class="text-body-secondary">(Optional)</span></label>
+                                        class="text-body-secondary">(Opcional)</span></label>
                                 <input type="text" class="form-control" id="game_url" placeholder="https://www.miurl.com">
                                 <div class="invalid-feedback">
                                     Campo requerido.
@@ -145,10 +147,13 @@
                         <hr class="my-4">
                         <div class="row">
                             <div class="col-2">
-                                <button class="w-100 btn-sm btn btn-primary" type="submit">Guardar</button>
+                                <button class="w-100 btn-sm btn btn-primary" type="button" 
+                                onClick="guardarFormulario(event)">Guardar</button>
                             </div>
                             <div class="col-2">
-                                <button class="w-100 btn-sm btn btn-secondary" type="button">Cancelar</button>
+                                <a href="./crud.html">
+                                    <button class="w-100 btn-sm btn btn-secondary" type="button">Cancelar</button>
+                                </a>
                             </div>
                         </div>
                     </form>

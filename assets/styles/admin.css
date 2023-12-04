@@ -15,6 +15,10 @@ p {
     margin-bottom: unset !important;
 }
 
+a {
+    text-decoration: none !important;
+}
+
 .btn-primary--save {
     padding: 18px 25px;
     background-color: #3f3456;

@@ -77,15 +77,9 @@ class Catalogo_juegos:
         self.cursor = self.conn.cursor(dictionary=True)
         
     #----------------------------------------------------------------
-    def agregar_juego(self, id, title, thumbnail, short_description, game_url, genre, platform, publisher, developer, release_date):
-        # Verificamos si ya existe un producto con el mismo código
-        self.cursor.execute(f"SELECT * FROM juegos_api WHERE id = {id}")
-        producto_existe = self.cursor.fetchone()
-        if producto_existe:
-            return False
-
-        sql = "INSERT INTO productos (id, title, thumbnail, short_description, game_url, genre, platform, publisher, developer, release_date) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-        valores = (id, title, thumbnail, short_description, game_url, genre, platform, publisher, developer, release_date)
+    def agregar_juego(self, title, thumbnail, short_description, game_url, genre, platform, publisher, developer, release_date):
+        sql = "INSERT INTO juegos_api (title, thumbnail, short_description, game_url, genre, platform, publisher, developer, release_date) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
+        valores = (title, thumbnail, short_description, game_url, genre, platform, publisher, developer, release_date)
 
         self.cursor.execute(sql, valores)        
         self.conn.commit()
@@ -99,7 +93,7 @@ class Catalogo_juegos:
 
     #----------------------------------------------------------------
     def modificar_juego(self, id, new_title, new_thumbnail, new_short_description, new_game_url, new_genre, new_platform, new_publisher, new_developer, new_release_date):
-        sql = "UPDATE productos SET title=%s, thumbnail=%s, short_description=%s, game_url=%s, genre=%s, platform=%s, publisher=%s, developer=%s, release_date=%s"
+        sql = "UPDATE juegos_api SET title = %s, thumbnail = %s, short_description = %s, game_url = %s, genre = %s, platform = %s, publisher = %s, developer = %s, release_date = %s WHERE id = %s"
         valores = (new_title, new_thumbnail, new_short_description, new_game_url, new_genre, new_platform, new_publisher, new_developer, new_release_date, id)
         self.cursor.execute(sql, valores)
         self.conn.commit()
@@ -138,6 +132,14 @@ class Catalogo_juegos:
         else:
             print("Juego no encontrado.")
 
+    #----------------------------------------------------------------
+    def obtener_generos_editor_desarrollador(self):
+        # obtenemos las opciones únicas para listar en el formulario
+        self.cursor.execute("SELECT DISTINCT genre, publisher, developer FROM juegos_api;")
+
+        opciones = self.cursor.fetchall()
+        return opciones
+
 # -------------------------------------------------------------------
 #--------------------------------------------------------------------
 # Cuerpo del programa
@@ -166,64 +168,41 @@ def mostrar_juego(id):
 
 
 #--------------------------------------------------------------------
-@app.route("/crud/<int:id>", methods=["POST"])
+@app.route("/crud/", methods=["POST"])
 def agregar_juegos():
-    #Recojo los datos del form
-    id = request.form['id']
-    title = request.form ['title']
-    release_date = request.form ['release_date']
-    short_description = request.form['short_description']
-    thumbnail = request.form['thumbnail']
-    game_url = request.form['game_url']
-    platform = request.form ['platform']
-    genre = request.form ['genre']
-    developer = ['developer']
-    publisher = request.form ['publisher']
+    datos_juego = request.get_json()
 
-    # Me aseguro que el producto exista
-    producto = catalogo.consultar_producto(id)
-    if not producto: # Si no existe el producto...
-        # Genero el nombre de la imagen
-        nombre_imagen = secure_filename(thumbnail.filename)
-        nombre_base, extension = os.path.splitext(nombre_imagen)
-        nombre_imagen = f"{nombre_base}_{int(time.time())}{extension}"
+    #Guardamos los datos del form que vienen en formato de json
+    title = datos_juego.get('title', None)
+    release_date = datos_juego.get('release_date', None)
+    short_description = datos_juego.get('short_description', None)
+    game_url = datos_juego.get('game_url', None)
+    platform = datos_juego.get('platform', None)
+    genre = datos_juego.get('genre', None)
+    publisher = datos_juego.get('publisher', None)
+    developer = datos_juego.get('developer', None)
+    thumbnail = datos_juego.get('thumbnail', None)
 
-    if catalogo.agregar_juego(id, title, thumbnail, short_description, game_url, genre, platform, publisher, developer, release_date):
-        thumbnail.save(os.path.join(RUTA_DESTINO, nombre_imagen))
-        return jsonify({"mensaje": "Producto agregado"}), 201
+    if catalogo.agregar_juego(title, thumbnail, short_description, game_url, genre, platform, publisher, developer, release_date):
+        return jsonify({"mensaje": "Juego agregado"}), 201
     else:
-        return jsonify({"mensaje": "Producto ya existe"}), 400
+        return jsonify({"mensaje": "Juego ya existe"}), 400
 
 #--------------------------------------------------------------------
 @app.route("/crud/<int:id>", methods=["PUT"])
 def modificar_juego(id):
-    #Recojo los datos del form
-    new_title = request.form.get('title')
-    new_release_date = request.form.get('release_date')
-    new_short_description = request.form.get('short_description')
-    new_game_url = request.form.get('game_url')
-    new_platform = request.form.get('platform')
-    new_genre = request.form.get('genre')
-    new_publisher = request.form.get('publisher')
-    new_developer = request.form.get('developer')
-    new_thumbnail = request.files['thumbnail']
+    datos_actualizados = request.get_json()
 
-    # Procesamiento de la imagen
-    nombre_imagen = secure_filename(new_thumbnail.filename)
-    nombre_base, extension = os.path.splitext(nombre_imagen)
-    nombre_imagen = f"{nombre_base}_{int(time.time())}{extension}"
-    new_thumbnail.save(os.path.join(RUTA_DESTINO, nombre_imagen))
-
-    # Busco el producto guardado
-    producto = producto = Catalogo_juegos.consultar_juego(id)
-    if producto: # Si existe el producto...
-        imagen_vieja = producto["thumbnail"]
-        # Armo la ruta a la imagen
-        ruta_imagen = os.path.join(RUTA_DESTINO, imagen_vieja)
-
-        # Y si existe la borro.
-        if os.path.exists(ruta_imagen):
-            os.remove(ruta_imagen)
+    #Guardamos los datos del form que vienen en formato de json
+    new_title = datos_actualizados.get('title', None)
+    new_release_date = datos_actualizados.get('release_date', None)
+    new_short_description = datos_actualizados.get('short_description', None)
+    new_game_url = datos_actualizados.get('game_url', None)
+    new_platform = datos_actualizados.get('platform', None)
+    new_genre = datos_actualizados.get('genre', None)
+    new_publisher = datos_actualizados.get('publisher', None)
+    new_developer = datos_actualizados.get('developer', None)
+    new_thumbnail = datos_actualizados.get('thumbnail', None)
     
     if catalogo.modificar_juego(id, new_title, new_thumbnail, new_short_description, new_game_url, new_genre, new_platform, new_publisher, new_developer, new_release_date):
         return jsonify({"mensaje": "Producto modificado"}), 200
@@ -234,23 +213,20 @@ def modificar_juego(id):
 #--------------------------------------------------------------------
 @app.route("/crud/<int:id>", methods=["DELETE"])
 def eliminar_juego(id):
-    # Busco el producto guardado
-    producto = producto = catalogo.consultar_juego(id)
-    if producto: # Si existe el producto...
-        imagen_vieja = producto["thumbnail"]
-        # Armo la ruta a la imagen
-        ruta_imagen = os.path.join(RUTA_DESTINO, imagen_vieja)
-
-        # Y si existe la borro.
-        if os.path.exists(ruta_imagen):
-            os.remove(ruta_imagen)
-
-    # Luego, elimina el producto del catálogo
-    if catalogo.eliminar_producto(id):
-        return jsonify({"mensaje": "Producto eliminado"}), 200
-    else:
-        return jsonify({"mensaje": "Error al eliminar el producto"}), 500
+    # Busco el juego guardado
+    juego = juego = catalogo.consultar_juego(id)
+    if juego: # Si existe el juego...
+        # elimina el juego del catálogo
+        if catalogo.eliminar_juego(id):
+            return jsonify({"mensaje": "juego eliminado"}), 200
+        else:
+            return jsonify({"mensaje": "Error al eliminar el juego"}), 500
     
+#--------------------------------------------------------------------
+@app.route("/formulario", methods=["GET"])
+def obtener_generos_editor_desarrollador():
+    opciones = catalogo.obtener_generos_editor_desarrollador()
+    return jsonify(opciones)
 
 #--------------------------------------------------------------------
 if __name__ == "__main__":
